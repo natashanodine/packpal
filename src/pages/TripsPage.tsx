@@ -30,7 +30,7 @@ export default function TripsPage() {
     <button
       type="button"
       onClick={() => setCreating(true)}
-      className="flex items-center gap-2 rounded-xl bg-primary px-4 py-3 font-medium text-white shadow-sm hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      className="flex items-center gap-2 rounded-xl bg-primary px-4 py-3 font-medium text-white shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
     >
       <Plus size={18} aria-hidden />
       {label}
