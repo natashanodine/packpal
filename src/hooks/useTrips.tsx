@@ -10,7 +10,6 @@ import {
 import type { PackingItem, PackingList, Trip } from '../types';
 import { loadTrips, saveTrips } from '../utils/storage';
 import { cleanName, sortTrips } from '../utils/packingUtils';
-import { toDateInputValue } from '../utils/dateUtils';
 
 interface TripsContextValue {
   trips: Trip[];
@@ -25,7 +24,6 @@ interface TripsContextValue {
   renameItem: (tripId: string, listId: string, itemId: string, name: string) => void;
   toggleItem: (tripId: string, listId: string, itemId: string) => void;
   deleteItem: (tripId: string, listId: string, itemId: string) => void;
-  loadSampleTrip: () => Trip;
 }
 
 const TripsContext = createContext<TripsContextValue | null>(null);
@@ -134,36 +132,7 @@ export function TripsProvider({ children }: { children: ReactNode }) {
           items: l.items.filter((i) => i.id !== itemId),
         })),
 
-      // One-click demo data: departs tomorrow, so the reminder shows immediately.
-      loadSampleTrip: () => {
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        const item = (name: string, isPacked = false): PackingItem => ({
-          id: crypto.randomUUID(),
-          name,
-          isPacked,
-        });
-        const trip: Trip = {
-          id: crypto.randomUUID(),
-          name: 'Beach Vacation',
-          departureDate: toDateInputValue(tomorrow),
-          createdAt: new Date().toISOString(),
-          lists: [
-            {
-              id: crypto.randomUUID(),
-              name: 'Clothing',
-              items: [item('Swimsuit', true), item('T-shirts'), item('Sandals')],
-            },
-            {
-              id: crypto.randomUUID(),
-              name: 'Electronics',
-              items: [item('Phone charger'), item('Camera', true)],
-            },
-          ],
-        };
-        setTrips((prev) => [...prev, trip]);
-        return trip;
-      },
+
     }),
     [trips, mapTrip, mapList, mapItem],
   );
