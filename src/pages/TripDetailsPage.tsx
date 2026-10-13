@@ -110,7 +110,7 @@ export default function TripDetailsPage() {
 
             {reminder && (
                 <div className="mt-4">
-                    <ReminderBanner reminder={reminder} actionLabel="See lists" />
+                    <ReminderBanner reminder={reminder}/>
                 </div>
             )}
 
