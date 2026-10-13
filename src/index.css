@@ -9,3 +9,7 @@
   --color-muted: #64748B;
   --font-sans: "Inter", system-ui, sans-serif;
 }
+
+body {
+  @apply bg-slate-50 text-ink antialiased;
+}
